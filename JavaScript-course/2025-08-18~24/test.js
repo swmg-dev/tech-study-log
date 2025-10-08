@@ -101,14 +101,3 @@ for (let i = 1; i < 10; i++) {
     }
   }
 }
-
-// 함수 표현식은 function 키워드 다음에 있는 함수 이름으로 실행하는게 아니고 변수의 이름으로 실행한다!
-const printName = function printName() {
-  console.log(3);
-  console.log(3);
-  console.log(3);
-};
-printName();
-
-// 네이밍함수
-// 익명함수: 함수의 이름이 없는 형태
