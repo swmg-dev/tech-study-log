@@ -1,5 +1,7 @@
 function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((resolve, reject) =>
+    setTimeout(reject(new Error('something error...')), ms)
+  );
 }
 
 function getBike() {
@@ -7,11 +9,19 @@ function getBike() {
 }
 
 async function getBicycle() {
-  await delay(2000);
-  await delay(2000);
-  await delay(2000);
-  return '자전거';
+  try {
+    await delay(1000);
+    return '자전거';
+  } catch (error) {
+    console.log(error.message);
+    throw error;
+  }
 }
+
+getBike().then(console.log);
+getBicycle()
+  .then(console.log)
+  .catch((err) => console.log(err.message));
 
 // async function getBicycleBackup() {
 //   //   return delay(2000).then(() =>
@@ -21,5 +31,3 @@ async function getBicycle() {
 
 // const bike = getBike();
 // const bicy = getBicycle();
-getBike().then(console.log);
-getBicycle().then(console.log);
